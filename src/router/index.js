@@ -11,7 +11,7 @@ const routes = [
     path: '/',
     name: 'Login',
     component: LoginView
-  },  {
+  }, {
     path: '/register',
     name: 'Register',
     component: RegisterView
