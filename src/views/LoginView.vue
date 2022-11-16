@@ -15,13 +15,17 @@
               <form action="/" method="POST">
                 <div class="form-group code-form">
                   <div class="input-group">
-                    <div class="input-group-addon icon"><i class="fa fa-link"></i></div>
+                    <div class="input-group-addon icon">
+                      <font-awesome-icon icon="fa-solid fa-link" />
+                    </div>
                     <input type="text" name="code" class="form-control login-form"
                       placeholder="Enter your chatroom code" required />
                   </div>
                 </div>
                 <div class="input-group">
-                  <div class="input-group-addon icon"><i class="fa fa-user"></i></div>
+                  <div class="input-group-addon icon">
+                    <font-awesome-icon icon="fa-solid fa-user" />
+                  </div>
                   <input placeholder="Enter your nickname" name="nickname" type="text" class="form-control login-form"
                     required>
                 </div>
@@ -36,7 +40,7 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon icon">
-                        <i class="fa fa-envelope"></i>
+                        <font-awesome-icon icon="fa-solid fa-envelope" />
                       </div>
                       <input type="text" name="email" class="form-control login-form" value="" id="email"
                         placeholder="Email" required autofocus>
@@ -44,7 +48,9 @@
                   </div>
                   <div class="form-group">
                     <div class="input-group">
-                      <div class="input-group-addon icon"><i class="fa fa-key"></i></div>
+                      <div class="input-group-addon icon">
+                        <font-awesome-icon icon="fa-solid fa-key" />
+                      </div>
                       <input type="password" name="password" class="form-control login-form" id="password"
                         placeholder="password" required>
                     </div>

@@ -125,7 +125,11 @@ a:hover{
     color: white;
 }
 
-
+@media (max-width: 768px) {
+    .codePanel {
+        border-right: 0px white solid;
+    }
+}
 
 
 /* #413F32, rgba(143, 137, 115, 0.795) */
