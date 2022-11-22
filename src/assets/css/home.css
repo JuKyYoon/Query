@@ -1,0 +1,382 @@
+/*
+1. #8E8971
+2. #262623
+3. #E4E8E0
+4. #C49B33
+*/
+
+@font-face{
+    font-family: GeosansLight;
+    src: url(../fonts/GeosansLight.ttf);
+}
+
+@font-face{
+    font-family: Roboto-Light;
+    src: url(../fonts/Roboto-Light.ttf);
+}
+
+@font-face{
+    font-family: Roboto-Thin;
+    src: url(/fonts/Roboto-Thin.ttf);
+}
+
+@font-face{
+    font-family: lexi;
+    src: url(/fonts/Lexi.ttf);
+}
+
+@font-face{
+    font-family: Ari;
+    src: url(/fonts/Ari.otf);
+}
+
+@font-face{
+    font-family: AriL;
+    src: url(/fonts/AriL.otf);
+}
+
+body{
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-color: #ececec;
+    font-family: Roboto-Light, AriL;  
+}
+
+a:hover{
+    text-decoration: none;
+}
+.main_button{
+    background-color: #C49B33;
+    border-color: #C49B33;
+
+}
+.main_button:hover{
+    background-color: #555241;  
+    border-color: #555241;
+}
+
+#chatListHr{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.logout{
+    color: #8E8971;
+    font-size: 15px;
+    margin-top: 1%;
+    float: right;
+    margin-right: 2%;
+}
+
+.primary{
+    border-color: #55524152;
+    margin-bottom: 0px;
+}
+
+.main_color{
+    color: #C49B33;
+}
+.main_color_leave{
+    color: #8E8971;
+}
+.question{
+    margin-top: 1%;
+    font-size: 15px;
+    float: right;
+    color: #555241;
+    cursor: pointer;
+
+}
+
+.q_text{
+    color: #67675F;
+}
+
+.question:hover{
+    color: #252620;
+}
+
+
+.toggle_button{
+    color: #555241;
+    background-color: transparent !important;
+    border: 1px solid #555241;
+    margin-left: 1%;
+
+}
+
+.bar{
+    margin-top: 1%;
+    float:right;
+    margin-left: 2%;
+    margin-right: 2%;
+    color: #55524152;
+}
+
+.q_badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 8px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 1;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #555241;
+
+}
+
+.logout:hover{
+    color: #252620;
+}
+
+.arrow{
+    position: fixed;
+}
+
+.user_name{
+    font-size: 15px;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
+.logo_text{
+    margin-top: 15%;
+    color: white;
+    font-family: GeosansLight;
+    font-size: 40px;
+}
+
+#content-query {
+    overflow-y: scroll;
+    overflow-x: hidden; 
+    height: auto;
+    max-height: 600px;
+}
+
+#list_title {
+    font-style: oblique;
+    margin-bottom: 0;
+    font-size: 18px;
+}
+
+
+
+.chatroomList_button{
+    width: 100px;
+    color: #67675F;
+    font-size: 15px;
+}
+
+.chatroomList_button:hover{
+    color: #C49B33;
+}
+
+#wrapper {
+    padding-left: 250px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 0px;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 0px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: -webkit-linear-gradient(top, #30332D, rgb(65, 62, 52)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top, rgba(3, 3, 3, 0.795), rgba(61, 59, 49, 0.795)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top, rgba(3, 3, 3, 0.795), rgba(61, 59, 49, 0.795)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(top, rgba(3, 3, 3, 0.795), rgba(61, 59, 49, 0.795)); /* Standard syntax */
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper #sidebar-wrapper{
+    left: 250px;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    left: 0;
+     width: 250px;
+ }
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+}
+
+#wrapper #page-content-wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position: absolute;
+    margin-right: -250px;
+}
+
+#page-content-wrapper > a {
+    float:right;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.selected-nav{
+     text-decoration: none;
+     color: #ffffff !important;
+     background: #8E8971;
+}
+
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+.page_header{
+    padding-left: 10px;
+    color: #67675F;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: #8E8971;
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand {
+    height: 65px;
+    font-size: 28px;
+    line-height: 60px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+.clock{
+    margin-top: 1%
+}
+
+
+@media(min-width:768px) {
+    /*    .title{
+            color:red;
+        }*/
+
+    #wrapper {
+        padding-left: 0;
+    }
+    #wrapper.toggled {
+        padding-left: 250px;
+    }
+    #sidebar-wrapper {
+        left: 0px;
+        width: 0px;
+
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        left:250px;
+        width: 250px;
+    }
+    #page-content-wrapper {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+
+    }
+
+}
+
+@media (max-width: 1024px) {
+    .modal-dialog{
+        width: 300px;
+    }
+    .modal{
+        left: 50%;
+        margin-left: -20%;
+    }
+    #chatListHr{
+        width: 250px;
+    }
+    #count_Q{
+        text-align: right;
+    }
+}
+.plus{
+    float: right;
+    margin-right: 5px;
+    outline: none;
+
+}
+.plus:focus, .plus:active{
+    outline:none;
+}
+
+.green{
+    color: #999999;
+}
+.green:hover{
+    color: white;
+}
+.minus{
+    float: right;
+    margin-top: 3px;
+    margin-right: 10px;
+    border: none;
+}
+.minus:focus{
+    outline:none;
+}
+.msqu:hover{
+    color: white;
+}
+
+.msqu{
+    color: #999999;
+    cursor: pointer;
+}
+
+

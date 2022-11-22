@@ -1,0 +1,21 @@
+.intro_title{
+	margin-top: 11%;
+}
+.create{
+	color:#C49B33;
+	font-weight:bold; font-size:26px
+}
+.create:hover{
+	color:#555241;
+	font-weight:bold; font-size:26px;
+	cursor: pointer;	
+
+}
+.intro_main{
+	margin-top: 10%;
+	color: #67675F;
+}
+.intro_text{
+	margin-top: 9%;
+	color: #67675F;
+}
