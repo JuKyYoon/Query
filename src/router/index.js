@@ -23,7 +23,14 @@ const routes = [
   }, {
     path: '/main',
     name: 'Main',
-    component: MainView
+    component: MainView,
+    children: [
+      {
+        path: '',
+        name: 'DashBoard',
+        component: () => import('@/components/DashBoard.vue')
+      }
+    ]
   }
 ]
 

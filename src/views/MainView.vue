@@ -68,10 +68,9 @@
         </div>
         <hr class="primary">
         <!-- @yield('dashboard') -->
-        dashboard
+        <router-view></router-view>
         <div class="row">
           <!-- @yield('content') -->
-          content
         </div>
       </div>
 
@@ -161,7 +160,7 @@ export default {
     }, 1000)
   },
   methods: {
-    toggleMenu(e) {
+    toggleMenu (e) {
       e.preventDefault()
       this.isToggle = !this.isToggle
     }
