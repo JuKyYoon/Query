@@ -62,45 +62,44 @@
           </span>
         </div>
       </div>
-      <!-- @if(Auth::user()->type == 1)
-      <a data-toggle="modal" data-target="#notice_modal">
+      <a data-toggle="modal" data-target="#notice_modal" v-if="userType==1">
         <div class="notice_section">
-          <i class="fa fa-bullhorn notice_text" aria-hidden="true"></i>
-          @if($chatroom->notice == "")
-          <span class="notice_text">Click here to add notice!</span>
-
-          @endif
-          <span class="notice_text">{{ $chatroom -> notice }}</span>
+          <font-awesome-icon icon="fa-solid fa-bullhorn" class="notice_text" aria-hidden="true"/>
+          <span class="notice_text" v-if="notice === ''">Click here to add notice!</span>
+          <span class="notice_text" v-else>{{notice}}</span>
         </div>
       </a>
-      @else
-      <div class="notice_section_2">
-        <i class="fa fa-bullhorn notice_text" aria-hidden="true"></i>
-        @if($chatroom->notice == "")
-        <span class="notice_text">There is no notice yet.</span>
-        @endif
-        <span class="notice_text">{{ $chatroom -> notice }}</span>
+      <div class="notice_section_2" v-else>
+        <font-awesome-icon icon="fa-solid fa-bullhorn" class="notice_text" aria-hidden="true"/>
+        <span class="notice_text" v-if="notice === ''">There is no notice yet.</span>
+        <span class="notice_text" v-else>{{notice}}</span>
       </div>
-      @endif
-      <div class="chat_body" id="chat_body">
+
+      <!-- <div class="chat_body" id="chat_body">
         <chatlog-component v-on:likesent="addLike" :messages="messages"></chatlog-component>
-      </div>
+      </div> -->
       <div class="row">
         <div class="chat_footer">
           <chatsend-component v-on:messagesent="addMessage"></chatsend-component>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import CurrentPopularComponentVue from '@/components/CurrentPopularComponent.vue';
+import ChatsendComponent from '@/components/ChatSendComponent.vue';
 export default {
-  components: { CurrentPopularComponentVue },
+  components: { CurrentPopularComponentVue, ChatsendComponent },
   name: 'ChatRoom',
   created() {
     console.log(this.$route.params)
+  },
+  methods: {
+    addMessage () {
+      alert("send message axios")
+    }
   },
   data() {
     return {
@@ -108,7 +107,8 @@ export default {
       queries: 5,
       query_unsolved: 3,
       people: 10,
-      userType: 1
+      userType: 1,
+      notice: ''
     }
   }
 }
