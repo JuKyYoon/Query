@@ -29,6 +29,11 @@ const routes = [
         path: '',
         name: 'DashBoard',
         component: () => import('@/components/DashBoard.vue')
+      },
+      {
+        path: ':cid',
+        name: 'ChatRoom',
+        component: () => import('@/components/ChatRoom.vue')
       }
     ]
   }

@@ -7,13 +7,13 @@
           <button class="btn btn-link plus">
             <font-awesome-icon icon="fa-solid fa-plus" size="2x" :style="{ color: 'grey' }" />
           </button>
-          <a href="/home">
+          <a href="/main">
             <h2 class="logo_text">Query</h2>
           </a>
         </li>
-        <li><a class="chatroomList" href="#">SkyBlue</a></li>
-        <li><a class="chatroomList" href="#">RedGreen</a></li>
-        <li><a class="chatroomList" href="#">PinkPurple</a></li>
+        <li v-for="chatroom in chatrooms">
+          <span class="chatroomList"  @click="toChatRoom(chatroom.cid)">{{chatroom.name}}</span>
+        </li>
       </ul>
       <ul class="sidebar-nav" v-else>
         <li class="sidebar-brand">
@@ -68,7 +68,7 @@
         </div>
         <hr class="primary">
         <!-- @yield('dashboard') -->
-        <router-view></router-view>
+        <router-view :key="$route.path"></router-view>
         <div class="row">
           <!-- @yield('content') -->
         </div>
@@ -163,6 +163,12 @@ export default {
     toggleMenu (e) {
       e.preventDefault()
       this.isToggle = !this.isToggle
+    },
+    toChatRoom (cid) {
+      console.log(cid)
+      if(this.$route.path !== '/main/' + cid) {
+        this.$router.push({ name: "ChatRoom", params: { cid: cid } });
+      }
     }
   },
   data () {
@@ -180,6 +186,18 @@ export default {
         }, {
           name: 'Samsung',
           email: 'samsung@gmail.com'
+        }
+      ],
+      chatrooms: [
+        {
+          cid: 'z6e6qf',
+          name: 'SkyBlue'
+        }, {
+          cid: 'vwo31z',
+          name: 'RedGreen'
+        }, {
+          cid: 'a1pfkz',
+          name: 'PinkPurple'
         }
       ]
     }
