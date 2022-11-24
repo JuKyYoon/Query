@@ -75,9 +75,9 @@
         <span class="notice_text" v-else>{{notice}}</span>
       </div>
 
-      <!-- <div class="chat_body" id="chat_body">
-        <chatlog-component v-on:likesent="addLike" :messages="messages"></chatlog-component>
-      </div> -->
+      <div class="chat_body" id="chat_body">
+        <chat-log-component v-on:likesent="addLike" :messages="messages"></chat-log-component>
+      </div>
       <div class="row">
         <div class="chat_footer">
           <chatsend-component v-on:messagesent="addMessage"></chatsend-component>
@@ -90,8 +90,9 @@
 <script>
 import CurrentPopularComponentVue from '@/components/CurrentPopularComponent.vue';
 import ChatsendComponent from '@/components/ChatSendComponent.vue';
+import ChatLogComponent from './ChatLogComponent.vue';
 export default {
-  components: { CurrentPopularComponentVue, ChatsendComponent },
+  components: { CurrentPopularComponentVue, ChatsendComponent, ChatLogComponent },
   name: 'ChatRoom',
   created() {
     console.log(this.$route.params)
@@ -99,6 +100,9 @@ export default {
   methods: {
     addMessage () {
       alert("send message axios")
+    },
+    addLike (like) {
+      console.log(like)
     }
   },
   data() {
@@ -108,7 +112,30 @@ export default {
       query_unsolved: 3,
       people: 10,
       userType: 1,
-      notice: ''
+      notice: '',
+      messages: [
+        {
+          id: 'mid',
+          sender: '보낸 사람',
+          content: '메시지 내용',
+          solve: false,
+          user_id: 'id',
+          like: 3,
+          created_at: '19:12'
+        },
+        {
+          id: 'mid2',
+          sender: '보낸 사람2',
+          content: '메시지 내용2',
+          solve: true,
+          user_id: 'id',
+          like: 7,
+          created_at: '19:12'
+        }
+
+
+      ]
+
     }
   }
 }
