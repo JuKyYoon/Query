@@ -32,7 +32,7 @@
       <div class="popular_top">We wonder...</div>
       <hr id="top_hr">
       <div class="popular_section" id="pop_h">
-        <!-- <popular-component v-on:popularsent="addPopular" :populars="populars"></popular-component> -->
+        <popular-component v-on:popularsent="addPopular" :populars="populars"></popular-component>
       </div>
     </div>
     <div class="col-sm-7 chat_section">
@@ -91,8 +91,9 @@
 import CurrentPopularComponentVue from '@/components/CurrentPopularComponent.vue';
 import ChatsendComponent from '@/components/ChatSendComponent.vue';
 import ChatLogComponent from './ChatLogComponent.vue';
+import PopularComponent from '@/components/PopularComponent.vue'
 export default {
-  components: { CurrentPopularComponentVue, ChatsendComponent, ChatLogComponent },
+  components: { CurrentPopularComponentVue, ChatsendComponent, ChatLogComponent, PopularComponent },
   name: 'ChatRoom',
   created() {
     console.log(this.$route.params)
@@ -103,10 +104,28 @@ export default {
     },
     addLike (like) {
       console.log(like)
+    },
+    addPopular () {
+      // 상태에 따라 allquery 증감, query_unsolved 증감
+      console.log("addpopular")
     }
   },
   data() {
     return {
+      populars: [
+        {
+          id: 'av24',
+          content: 'mycon1',
+          solve: 1,
+          message_id: 'r14zdf'
+        }, 
+        {
+          id: 'zcv1z',
+          content: 'mycon2',
+          solve: 0,
+          message_id: 'qewr'
+        }
+      ],
       cid: this.$route.params.cid,
       queries: 5,
       query_unsolved: 3,
