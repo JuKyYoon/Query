@@ -4,7 +4,7 @@
     <div id="sidebar-wrapper">
       <ul class="sidebar-nav" v-if="userType == 1">
         <li class="sidebar-brand">
-          <button class="btn btn-link plus">
+          <button class="btn btn-link plus" v-on:click="openCreateChatroomModal">
             <font-awesome-icon icon="fa-solid fa-plus" size="2x" :style="{ color: 'grey' }" />
           </button>
           <a href="/main">
@@ -46,13 +46,13 @@
               </span>
             </a>
             <span class="bar"> | </span>
-            <a class="question" data-toggle="modal" data-target="#queryModal">
+            <span class="question" data-toggle="modal" data-target="#queryModal" v-on:click="openQueryModal">
               <font-awesome-icon icon="fa-solid fa-comments" />
               <span class="q_text"> Queries </span>
               <span class="badge q_badge">
                 <strong>{{allQueires}}</strong>
               </span>
-            </a>
+            </span>
             <span class="bar"> | </span>
             <span id="clock" class="pull-right clock">{{nowTime}}</span>
           </span>
@@ -74,8 +74,9 @@
         </div>
       </div>
 
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
+      <!-- 채팅룸 생성 -->
+      <div class="modal-open" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true" v-if="modalShow">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -102,7 +103,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="closeCreateChatroomModal">Close</button>
                   <button type="submit" class="btn btn-primary main_button">Create</button>
                 </div>
               </div>
@@ -111,12 +112,13 @@
         </div>
       </div>
 
-      <div class="modal fade" id="queryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
+      <!-- 쿼리 확인 -->
+      <div class="modal-open" id="queryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true" v-if="queryModalShow">
         <div class="modal-dialog modal-sm">
           <div class="modal-content" id="content-query">
             <div class="modal-header" id="query-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" v-on:click="closeQueryModal">
                 <span aria-hidden="true">&times;</span>
               </button>
               <h4 class="modal-title" id="myModalL">Queries</h4>
@@ -130,17 +132,20 @@
                   </div>
                   <div class="form-group">
                     <label class="col-sm-10 col-sm-offset-1">
+                      <!-- for each -->
                       <hr id="chatListHr">
                       <a class="chatroomList_button" href="/">
                         <div class="chatListdiv">
-                          chatlist
+                          <span>채팅룸 아이디</span>
+                          <!-- 남아있는 질문 수 -->
+                          <span id="eachCount" class="pull-right col-sm-1">4</span>     
                         </div>
                       </a>
                     </label>
                   </div>
                 </div>
                 <div class="modal-footer fixed">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="closeQueryModal">Close</button>
                 </div>
               </div>
             </form>
@@ -169,10 +174,24 @@ export default {
       if(this.$route.path !== '/main/' + cid) {
         this.$router.push({ name: "ChatRoom", params: { cid: cid } });
       }
+    },
+    openCreateChatroomModal () {
+      this.modalShow = true
+    },
+    closeCreateChatroomModal () {
+      this.modalShow = false
+    },
+    openQueryModal () {
+      this.queryModalShow = true
+    },
+    closeQueryModal () {
+      this.queryModalShow = false
     }
   },
   data () {
     return {
+      modalShow: false,
+      queryModalShow: false,
       isToggle: true,
       nowTime: new Date().toLocaleTimeString('en-US'),
       isLogin: true,
