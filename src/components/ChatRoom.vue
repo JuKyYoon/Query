@@ -170,7 +170,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="closeModal">Cancel</button>
-                <!-- <leavechat-component v-on:leavesent="leaveChat" :id="chatroomId"></leavechat-component> -->
+                <button type="button" class="btn btn-primary main_button">Delete</button>
               </div>
             </div>
           </form>
