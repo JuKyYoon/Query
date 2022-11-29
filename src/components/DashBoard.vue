@@ -3,7 +3,7 @@
     <div class="row">
       <div class="main_logo text-center">
         <h3 class="intro_title">Create <span><a data-toggle="modal" data-target="#myModal"
-              class="create">Queryroom</a></span> to get questions from students</h3>
+              class="create" v-on:click="openModal">Queryroom</a></span> to get questions from students</h3>
         <!-- {{ -- < div class= "main_logo" >
         <img src="{{ asset('imgs/main_logo.png') }}" style="width:10%; height:10%; margin-top:5%">
         </div> --}} -->
@@ -47,6 +47,16 @@
 </template>
 
 <script>
+export default {
+  name: 'DashBoard',
+  created () {
+
+  },methods: {
+    openModal () {
+      this.$emit('openModal')
+    }
+  }
+}
 </script>
 
 <style>

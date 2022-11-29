@@ -68,7 +68,7 @@
         </div>
         <hr class="primary">
         <!-- @yield('dashboard') -->
-        <router-view :key="$route.path"></router-view>
+        <router-view :key="$route.path" @openModal="openCreateChatroomModal"></router-view>
         <div class="row">
           <!-- @yield('content') -->
         </div>
