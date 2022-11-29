@@ -1,6 +1,12 @@
 # query
 
-> A Vue.js project
+**to do**
+
+- [X] add All Modals
+- [ ] add a ClipBoard in ChatroomID
+- [ ] Make a ERD
+- [ ] Server
+
 
 ## Build Setup
 
