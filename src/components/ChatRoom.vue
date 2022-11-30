@@ -46,10 +46,11 @@
           <span>
             <font-awesome-icon icon="fa-solid fa-link" />
             <a tabindex="0" class="clipboard like" id="copy" data-trigger="focus" data-clipboard-target="#copy"
-              data-toggle="popover" data-placement="right" data-content="You copied the code.">{{ cid }}</a>
+              data-toggle="popover" data-placement="right" v-tooltip="{ content: 'You copied the code.', show: copied, trigger: 'manual'}" aria-label="You copied the code.">{{ cid }}</a>
           </span>
 
-          <a class="pull-right" style="margin-top:1%" data-toggle="modal" data-target="#del_button" v-on:click="() => openModal('delchatroom')">
+          <a class="pull-right" style="margin-top:1%" data-toggle="modal" data-target="#del_button"
+            v-on:click="() => openModal('delchatroom')">
             <!-- 클릭 시 삭제 모달? -->
             <font-awesome-icon id="delButton" icon="fa-solid fa-trash-can" />
           </a>
@@ -59,7 +60,7 @@
           <span>
             <font-awesome-icon icon="fa-solid fa-link" />
             <a tabindex="0" class="clipboard like" id="copy" data-trigger="focus" data-clipboard-target="#copy"
-              data-toggle="popover" data-placement="right" data-content="You copied the code.">{{ cid }}</a>
+              data-toggle="popover" data-placement="right" v-tooltip="{ content: 'You copied the code.', show: copied, trigger: 'manual'}" aria-label="You copied the code.">{{ cid }}</a>
           </span>
         </div>
       </div>
@@ -95,7 +96,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"
                 v-on:click="closeModal">&times;</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Modify Queryroom</h4>
+            <h4 class="modal-tfitle" id="myModalLabel">Modify Queryroom</h4>
           </div>
           <form method="post">
             <div class="modal-body">
@@ -156,8 +157,8 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true" v-on:click="closeModal">&times;</span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"
+                v-on:click="closeModal">&times;</span>
             </button>
             <h4 class="modal-title" id="delModalLabel">Delete Chatroom</h4>
           </div>
@@ -165,11 +166,12 @@
             <div class="modal-body">
               <div class="form-horizontal">
                 <div class="form-group" id="form-group-del">
-                  <font-awesome-icon icon="fa-solid fa-circle-exclamation" />Are you sure to delete  채팅방이름?
+                  <font-awesome-icon icon="fa-solid fa-circle-exclamation" />Are you sure to delete 채팅방이름?
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="closeModal">Cancel</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"
+                  v-on:click="closeModal">Cancel</button>
                 <button type="button" class="btn btn-primary main_button">Delete</button>
               </div>
             </div>
@@ -185,11 +187,25 @@ import CurrentPopularComponentVue from '@/components/CurrentPopularComponent.vue
 import ChatsendComponent from '@/components/ChatSendComponent.vue';
 import ChatLogComponent from './ChatLogComponent.vue';
 import PopularComponent from '@/components/PopularComponent.vue'
+import ClipboardJS from 'clipboard'
 export default {
   components: { CurrentPopularComponentVue, ChatsendComponent, ChatLogComponent, PopularComponent },
   name: 'ChatRoom',
   created() {
-    console.log(this.$route.params)
+    let clipboard = new ClipboardJS('.clipboard');
+    clipboard.on('success', (e) => {
+      e.clearSelection();
+      console.log("copied")
+      this.copied = true;
+      setTimeout(() => {
+        this.copied = false;
+        console.log('close')
+      }, 600);
+    })
+
+    clipboard.on('error', function (e) {
+      console.log("COPY Fail");
+    });
   },
   methods: {
     addMessage() {
@@ -211,6 +227,8 @@ export default {
   },
   data() {
     return {
+      tooltipContent: 'copied',
+      copied: false,
       isModal: 'none',
       populars: [
         {
@@ -265,5 +283,111 @@ export default {
   font-size: 38px;
   font-weight: bold;
   color: white;
+}
+
+.tooltip {
+  display: block !important;
+  z-index: 10000;
+}
+
+.tooltip .tooltip-inner {
+  background: black;
+  color: white;
+  border-radius: 16px;
+  padding: 5px 10px 4px;
+}
+
+.tooltip .tooltip-arrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  position: absolute;
+  margin: 5px;
+  border-color: black;
+  z-index: 1;
+}
+
+.tooltip[x-placement^="top"] {
+  margin-bottom: 5px;
+}
+
+.tooltip[x-placement^="top"] .tooltip-arrow {
+  border-width: 5px 5px 0 5px;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-bottom-color: transparent !important;
+  bottom: -5px;
+  left: calc(50% - 5px);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.tooltip[x-placement^="bottom"] {
+  margin-top: 5px;
+}
+
+.tooltip[x-placement^="bottom"] .tooltip-arrow {
+  border-width: 0 5px 5px 5px;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-top-color: transparent !important;
+  top: -5px;
+  left: calc(50% - 5px);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.tooltip[x-placement^="right"] {
+  margin-left: 5px;
+}
+
+.tooltip[x-placement^="right"] .tooltip-arrow {
+  border-width: 5px 5px 5px 0;
+  border-left-color: transparent !important;
+  border-top-color: transparent !important;
+  border-bottom-color: transparent !important;
+  left: -5px;
+  top: calc(50% - 5px);
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.tooltip[x-placement^="left"] {
+  margin-right: 5px;
+}
+
+.tooltip[x-placement^="left"] .tooltip-arrow {
+  border-width: 5px 0 5px 5px;
+  border-top-color: transparent !important;
+  border-right-color: transparent !important;
+  border-bottom-color: transparent !important;
+  right: -5px;
+  top: calc(50% - 5px);
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.tooltip.popover .popover-inner {
+  background: #f9f9f9;
+  color: black;
+  padding: 24px;
+  border-radius: 5px;
+  box-shadow: 0 5px 30px rgba(black, .1);
+}
+
+.tooltip.popover .popover-arrow {
+  border-color: #f9f9f9;
+}
+
+.tooltip[aria-hidden='true'] {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .15s, visibility .15s;
+}
+
+.tooltip[aria-hidden='false'] {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .15s;
 }
 </style>

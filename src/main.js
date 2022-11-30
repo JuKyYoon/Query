@@ -4,8 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import '@/style/fontAwesome.js'
+import VTooltip from 'v-tooltip'
 
+Vue.use(VTooltip)
 Vue.config.productionTip = false
+VTooltip.options.autoHide = true
 
 new Vue({
   router,
