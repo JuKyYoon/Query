@@ -3,7 +3,7 @@
 **to do**
 
 - [X] add All Modals
-- [ ] add a ClipBoard in ChatroomID
+- [X] add a ClipBoard in ChatroomID
 - [ ] Make a ERD
 - [ ] Server
 
